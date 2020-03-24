@@ -1,6 +1,7 @@
 package cn.hetonghao.heart.contoller;
 
 import cn.hetonghao.heart.mapper.ArticleMapper;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author HeTongHao
  * @since 2020/3/17 23:45
  */
+@Api
 @Controller
 public class IndexController {
     @Autowired

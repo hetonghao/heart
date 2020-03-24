@@ -12,3 +12,11 @@ spring:
     druid:
       stat-view-servlet:
         enabled: true
+  mail:
+    host: smtp.qq.com
+    password: lvdknthvzwlsgdjd
+    username: 1216040658@qq.com
+#    properties:
+#      mail.smtp.ssl.enable: true
+  thymeleaf:
+    cache: false
