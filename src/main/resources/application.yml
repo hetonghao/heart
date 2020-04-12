@@ -1,22 +1,29 @@
 server:
   port: 8080
 spring:
+  main:
+    allow-bean-definition-overriding: true
   messages:
     basename: messages/home
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/heart?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3307/heart?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       stat-view-servlet:
         enabled: true
+  redis:
+    host: ${SPRING_REDIS_HOST:localhost}
+    port: ${SPRING_REDIS_PORT:6379}
+    database: 1
+    timeout: 2000
   mail:
     host: smtp.qq.com
     password: lvdknthvzwlsgdjd
     username: 1216040658@qq.com
-#    properties:
-#      mail.smtp.ssl.enable: true
+  #    properties:
+  #      mail.smtp.ssl.enable: true
   thymeleaf:
     cache: false

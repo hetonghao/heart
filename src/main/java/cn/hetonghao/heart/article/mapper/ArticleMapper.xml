@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hetonghao.heart.article.mapper.ArticleMapper">
+
+    <resultMap id="entity" type="cn.hetonghao.heart.article.entity.Article"/>
+    <resultMap id="bo" extends="entity" type="cn.hetonghao.heart.article.bo.ArticleBO">
+    </resultMap>
+    <select id="page" resultMap="bo">
+        select base.*
+        from article as base
+        <where>
+            <if test="vo != null">
+
+            </if>
+        </where>
+    </select>
+    <select id="findDetail" resultMap="bo">
+        select base.*
+        from article as base
+        where base.id = #{id}
+    </select>
+</mapper>
