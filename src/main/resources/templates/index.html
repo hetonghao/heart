@@ -1,33 +1,14 @@
 <!DOCTYPE html>
-<!-- xmlns:xml namespace 命名空间，加上了才可以支持 thymeleaf 语法 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>index</title>
 </head>
 <body>
-<h1 th:if="false">测试页面</h1>
-<p th:text="${msg}"></p>
-<p th:utext="${htmlTag}"></p>
-
-<p th:text="#{home.welcome}"></p>
-<!--<p th:text="${#ctx}"></p>-->
-<!--<p th:text="${#vars}"></p>-->
-<!--<p th:text="${#locale}"></p>-->
-<!--<p th:text="${#response}"></p>-->
-<!--<p th:text="${#session}"></p>-->
-<!--<p th:text="${#servletContext}"></p>-->
-<table th:each="article : ${articles}">
-    <tr>
-        <td th:text="${article.id}"></td>
-        <td th:text="${article.getName()}"></td>
-    </tr>
-</table>
-<table th:each="article : ${articles}" th:if="false">
-    <tr>
-        <td th:text="${article.id}"></td>
-        <td th:text="${article.getName()}"></td>
-    </tr>
-</table>
+<dev th:replace="navigate"></dev>
+<div class="layui-body">
+    index
+</div>
+<dev th:replace="footer"></dev>
 </body>
 </html>

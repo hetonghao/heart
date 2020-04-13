@@ -1,11 +1,9 @@
 package cn.hetonghao.heart;
 
-import cn.hetonghao.heart.entity.Article;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -15,7 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
-import java.util.List;
 
 /**
  * @author HeTongHao
@@ -28,14 +25,6 @@ public class Main1 {
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private JavaMailSenderImpl javaMailSender;
-
-    @Test
-    public void main1() {
-        List<Article> articles = jdbcTemplate.query("select * from article", new BeanPropertyRowMapper<>(Article.class));
-        articles.forEach(article -> {
-            System.out.println(article.getName());
-        });
-    }
 
     @Test
     public void sendEmail() {

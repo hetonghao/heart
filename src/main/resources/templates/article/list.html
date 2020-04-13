@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>文章列表</title>
+</head>
+<body>
+<script th:src="@{/common/request.js}"></script>
+<dev th:replace="navigate"></dev>
+<div class="layui-body">
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>标题</th>
+            <th>作者</th>
+            <th>创建时间</th>
+            <th>更新时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody th:each="article : ${page.getRecords()}">
+        <tr>
+            <td th:text="${article.title}"></td>
+            <td th:text="${article.author}"></td>
+            <td th:text="${article.createTime}"></td>
+            <td th:text="${article.updateTime}"></td>
+            <td>
+                <a th:href="@{'/articles/'+${article.id}}">详情</a>
+                <a onclick="sendDelete(this);return false">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div id="pageBar"></div>
+
+    <script src="/static/build/layui.js"></script>
+    <script>
+        layui.use('laypage', function () {
+            var laypage = layui.laypage;
+
+            //执行一个laypage实例
+            laypage.render({
+                elem: 'pageBar' //注意，这里的 test1 是 ID，不用加 # 号
+                , count: 50 //数据总数，从服务端得到
+                , theme: '#1E9FFF'
+            });
+        });
+    </script>
+</div>
+<dev th:replace="footer"></dev>
+</body>
+</html>

@@ -4,8 +4,10 @@ import cn.hetonghao.oss.service.IOssFileService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import vc.thinker.common.response.SingleResponse;
 
@@ -18,7 +20,6 @@ import vc.thinker.common.response.SingleResponse;
 @Api("文件管理")
 @RestController
 @RequestMapping("file")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class FileController {
     @Autowired
     private IOssFileService ossFileService;
