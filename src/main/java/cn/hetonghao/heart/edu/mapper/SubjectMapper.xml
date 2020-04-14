@@ -14,7 +14,7 @@
                 and base.title like concat('%',#{vo.title},'%')
             </if>
             <if test="vo.parentId !=null and vo.parentId !=''">
-                and base.parent_id like concat('%',#{vo.parentId},'%')
+                and base.parent_id = #{vo.parentId}
             </if>
             <if test="vo.sort !=null">
                 and base.sort = #{vo.sort}

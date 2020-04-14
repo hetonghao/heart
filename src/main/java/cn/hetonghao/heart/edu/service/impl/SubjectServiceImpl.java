@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -39,6 +40,10 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
 
     @Override
     public boolean saveData(Subject subject) {
+        if (subject.getId() == null) {
+            subject.setGmtCreate(LocalDateTime.now());
+        }
+        subject.setGmtModified(LocalDateTime.now());
         return super.saveOrUpdate(subject);
     }
 
