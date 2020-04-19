@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import cn.hetonghao.heart.edu.entity.Chapter;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程
@@ -19,4 +21,5 @@ import cn.hetonghao.heart.edu.entity.Chapter;
 @Accessors(chain = true)
 @ApiModel(value = "ChapterBO对象", description = "课程")
 public class ChapterBO extends Chapter {
+    private List<VideoBO> videoList;
 }
