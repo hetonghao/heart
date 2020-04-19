@@ -4,14 +4,17 @@ import cn.hetonghao.heart.edu.bo.CourseBO;
 import cn.hetonghao.heart.edu.entity.Course;
 import cn.hetonghao.heart.edu.entity.CourseDescription;
 import cn.hetonghao.heart.edu.mapper.CourseMapper;
+import cn.hetonghao.heart.edu.service.IChapterService;
 import cn.hetonghao.heart.edu.service.ICourseDescriptionService;
 import cn.hetonghao.heart.edu.service.ICourseService;
+import cn.hetonghao.heart.edu.service.IVideoService;
 import cn.hetonghao.heart.edu.vo.CoursePageVO;
 import cn.hetonghao.heart.edu.vo.api.CourseSaveVO;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,9 +28,14 @@ import java.util.List;
  * @since 2020-04-16
  */
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements ICourseService {
     @Autowired
     private ICourseDescriptionService courseDescriptionService;
+    @Autowired
+    private IChapterService chapterService;
+    @Autowired
+    private IVideoService videoService;
 
     @Override
     public List<CourseBO> page(IPage page, CoursePageVO vo) {
@@ -41,8 +49,11 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Override
     public CourseBO findDetail(String id) {
-        return baseMapper.findDetail(id)
-                .setCourseDescription(courseDescriptionService.findDetail(id));
+        CourseBO course = baseMapper.findDetail(id);
+        if (course == null) {
+            return null;
+        }
+        return course.setCourseDescription(courseDescriptionService.findDetail(id));
     }
 
     @Override
@@ -71,6 +82,9 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Override
     public boolean delete(String id) {
-        return super.removeById(id);
+        return videoService.deleteByCourseId(id)
+                && chapterService.deleteByCourseId(id)
+                && courseDescriptionService.delete(id)
+                && super.removeById(id);
     }
 }

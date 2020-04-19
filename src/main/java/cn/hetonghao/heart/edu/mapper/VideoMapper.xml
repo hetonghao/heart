@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.hetonghao.heart.edu.mapper.ChapterMapper">
+<mapper namespace="cn.hetonghao.heart.edu.mapper.VideoMapper">
 
-    <resultMap id="entity" type="cn.hetonghao.heart.edu.entity.Chapter"/>
-    <resultMap id="bo" extends="entity" type="cn.hetonghao.heart.edu.bo.ChapterBO">
+    <resultMap id="entity" type="cn.hetonghao.heart.edu.entity.Video"/>
+    <resultMap id="bo" extends="entity" type="cn.hetonghao.heart.edu.bo.VideoBO">
     </resultMap>
     <sql id="condition">
         <if test="vo != null">
@@ -13,11 +13,38 @@
             <if test="vo.courseId !=null and vo.courseId !=''">
                 and base.course_id like concat('%',#{vo.courseId},'%')
             </if>
+            <if test="vo.chapterId !=null and vo.chapterId !=''">
+                and base.chapter_id like concat('%',#{vo.chapterId},'%')
+            </if>
             <if test="vo.title !=null and vo.title !=''">
                 and base.title like concat('%',#{vo.title},'%')
             </if>
+            <if test="vo.videoSourceId !=null and vo.videoSourceId !=''">
+                and base.video_source_id like concat('%',#{vo.videoSourceId},'%')
+            </if>
+            <if test="vo.videoOriginalName !=null and vo.videoOriginalName !=''">
+                and base.video_original_name like concat('%',#{vo.videoOriginalName},'%')
+            </if>
             <if test="vo.sort !=null">
                 and base.sort = #{vo.sort}
+            </if>
+            <if test="vo.playCount !=null">
+                and base.play_count = #{vo.playCount}
+            </if>
+            <if test="vo.isFree !=null">
+                and base.is_free = #{vo.isFree}
+            </if>
+            <if test="vo.duration !=null">
+                and base.duration = #{vo.duration}
+            </if>
+            <if test="vo.status !=null and vo.status !=''">
+                and base.status like concat('%',#{vo.status},'%')
+            </if>
+            <if test="vo.size !=null">
+                and base.size = #{vo.size}
+            </if>
+            <if test="vo.version !=null">
+                and base.version = #{vo.version}
             </if>
             <if test="vo.gmtCreate !=null">
                 and base.gmt_create = #{vo.gmtCreate}
@@ -41,7 +68,7 @@
     </sql>
     <select id="page" resultMap="bo">
         select base.*
-        from edu_chapter as base
+        from edu_video as base
         <where>
             <include refid="condition"/>
         </where>
@@ -49,14 +76,14 @@
     </select>
     <select id="countByVO" resultType="integer">
         select count(1)
-        from edu_chapter as base
+        from edu_video as base
         <where>
             <include refid="condition"/>
         </where>
     </select>
     <select id="findDetail" resultMap="bo">
         select base.*
-        from edu_chapter as base
+        from edu_video as base
         where base.id = #{id}
     </select>
 </mapper>

@@ -1,8 +1,8 @@
 package cn.hetonghao.heart.edu.mapper;
 
-import cn.hetonghao.heart.edu.bo.CourseBO;
-import cn.hetonghao.heart.edu.entity.Course;
-import cn.hetonghao.heart.edu.vo.CoursePageVO;
+import cn.hetonghao.heart.edu.bo.VideoBO;
+import cn.hetonghao.heart.edu.entity.Video;
+import cn.hetonghao.heart.edu.vo.VideoPageVO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
@@ -10,13 +10,13 @@ import java.util.List;
 
 /**
  * <p>
- * 课程 Mapper 接口
+ * 课程视频 Mapper 接口
  * </p>
  *
  * @author HeTongHao
- * @since 2020-04-16
+ * @since 2020-04-19
  */
-public interface CourseMapper extends BaseMapper<Course> {
+public interface VideoMapper extends BaseMapper<Video> {
     /**
      * 根据VO分页查询
      *
@@ -24,7 +24,7 @@ public interface CourseMapper extends BaseMapper<Course> {
      * @param vo
      * @return
      */
-    List<CourseBO> page(IPage page, CoursePageVO vo);
+    List<VideoBO> page(IPage page, VideoPageVO vo);
 
     /**
      * 根据VO统计数量
@@ -32,7 +32,7 @@ public interface CourseMapper extends BaseMapper<Course> {
      * @param vo
      * @return
      */
-    Integer countByVO(CoursePageVO vo);
+    Integer countByVO(VideoPageVO vo);
 
     /**
      * 根据id查询详情
@@ -40,5 +40,5 @@ public interface CourseMapper extends BaseMapper<Course> {
      * @param id
      * @return
      */
-    CourseBO findDetail(String id);
+    VideoBO findDetail(String id);
 }

@@ -1,6 +1,7 @@
 package cn.hetonghao.heart.edu.controller;
 
 import cn.hetonghao.heart.edu.bo.CourseBO;
+import cn.hetonghao.heart.edu.entity.Course;
 import cn.hetonghao.heart.edu.service.ICourseService;
 import cn.hetonghao.heart.edu.vo.CoursePageVO;
 import cn.hetonghao.heart.edu.vo.api.CourseSaveVO;
@@ -52,5 +53,11 @@ public class CourseController {
     @ApiOperation(value = "删除")
     public void delete(@PathVariable("id") String id) {
         courseService.delete(id);
+    }
+
+    @PutMapping("publish/{id}")
+    @ApiOperation(value = "发布")
+    public void publish(@PathVariable("id") String id) {
+        courseService.updateById(new Course().setId(id).setStatus("Normal"));
     }
 }

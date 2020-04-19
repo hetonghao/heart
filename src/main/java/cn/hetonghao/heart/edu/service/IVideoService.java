@@ -1,22 +1,22 @@
 package cn.hetonghao.heart.edu.service;
 
-import cn.hetonghao.heart.edu.entity.Chapter;
-import cn.hetonghao.heart.edu.vo.ChapterPageVO;
+import cn.hetonghao.heart.edu.entity.Video;
+import cn.hetonghao.heart.edu.vo.VideoPageVO;
 import com.baomidou.mybatisplus.extension.service.IService;
-import cn.hetonghao.heart.edu.bo.ChapterBO;
+import cn.hetonghao.heart.edu.bo.VideoBO;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import java.util.List;
 
 /**
  * <p>
- * 课程 服务类
+ * 课程视频 服务类
  * </p>
  *
  * @author HeTongHao
- * @since 2020-04-16
+ * @since 2020-04-19
  */
-public interface IChapterService extends IService<Chapter> {
+public interface IVideoService extends IService<Video> {
 
     /**
      * 根据VO分页查询
@@ -25,7 +25,7 @@ public interface IChapterService extends IService<Chapter> {
      * @param vo
      * @return
      */
-    List<ChapterBO> page(IPage page, ChapterPageVO vo);
+    List<VideoBO> page(IPage page, VideoPageVO vo);
 
     /**
      * 根据VO统计数量
@@ -33,7 +33,7 @@ public interface IChapterService extends IService<Chapter> {
      * @param vo
      * @return
      */
-    Integer countByVO(ChapterPageVO vo);
+    Integer countByVO(VideoPageVO vo);
 
     /**
      * 根据id查询详情
@@ -41,7 +41,7 @@ public interface IChapterService extends IService<Chapter> {
      * @param id
      * @return
      */
-    ChapterBO findDetail(String id);
+    VideoBO findDetail(String id);
 
     /**
      * 根据id删除,逻辑处理
@@ -54,13 +54,13 @@ public interface IChapterService extends IService<Chapter> {
     /**
      * 保存,逻辑处理
      *
-     * @param chapter
+     * @param video
      * @return
      */
-    boolean saveData(Chapter chapter);
+    boolean saveData(Video video);
 
     /**
-     * 根据课程删除
+     * 根据课程id删除
      *
      * @param courseId
      * @return

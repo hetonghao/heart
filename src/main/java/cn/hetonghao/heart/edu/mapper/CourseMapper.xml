@@ -5,6 +5,16 @@
     <resultMap id="entity" type="cn.hetonghao.heart.edu.entity.Course"/>
     <resultMap id="bo" extends="entity" type="cn.hetonghao.heart.edu.bo.CourseBO">
     </resultMap>
+    <sql id="select-from">
+        select base.*
+        ,t.name as teacher_name
+        ,s.title as subject_title
+        ,s_p.title as subject_parent_title
+        from edu_course as base
+        left join edu_teacher as t on(t.id=base.teacher_id)
+        left join edu_subject as s_p on(s_p.id=base.subject_parent_id)
+        left join edu_subject as s on(s.id=base.subject_id)
+    </sql>
     <sql id="condition">
         <if test="vo != null">
             <if test="vo.id !=null and vo.id !=''">
@@ -64,11 +74,11 @@
         </if>
     </sql>
     <select id="page" resultMap="bo">
-        select base.*
-        from edu_course as base
+        <include refid="select-from"/>
         <where>
             <include refid="condition"/>
         </where>
+        order by base.gmt_modified desc
     </select>
     <select id="countByVO" resultType="integer">
         select count(1)
@@ -78,8 +88,7 @@
         </where>
     </select>
     <select id="findDetail" resultMap="bo">
-        select base.*
-        from edu_course as base
+        <include refid="select-from"/>
         where base.id = #{id}
     </select>
 </mapper>

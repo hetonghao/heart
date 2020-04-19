@@ -1,10 +1,9 @@
 package cn.hetonghao.heart.edu.mapper;
 
-import org.apache.ibatis.annotations.Param;
-import cn.hetonghao.heart.edu.entity.Chapter;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import cn.hetonghao.heart.edu.vo.ChapterPageVO;
 import cn.hetonghao.heart.edu.bo.ChapterBO;
+import cn.hetonghao.heart.edu.entity.Chapter;
+import cn.hetonghao.heart.edu.vo.ChapterPageVO;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public interface ChapterMapper extends BaseMapper<Chapter> {
      * @param vo
      * @return
      */
-    List<ChapterBO> page(@Param("page") IPage page, @Param("vo") ChapterPageVO vo);
+    List<ChapterBO> page(IPage page, ChapterPageVO vo);
 
     /**
      * 根据VO统计数量
@@ -33,7 +32,7 @@ public interface ChapterMapper extends BaseMapper<Chapter> {
      * @param vo
      * @return
      */
-    Integer countByVO(@Param("vo") ChapterPageVO vo);
+    Integer countByVO(ChapterPageVO vo);
 
     /**
      * 根据id查询详情

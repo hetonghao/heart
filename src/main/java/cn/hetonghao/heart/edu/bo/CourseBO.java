@@ -19,5 +19,8 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @ApiModel(value = "CourseBO对象", description = "课程")
 public class CourseBO extends Course {
+    private String teacherName;
+    private String subjectTitle;
+    private String subjectParentTitle;
     private CourseDescriptionBO courseDescription;
 }

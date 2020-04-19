@@ -1,10 +1,9 @@
 package cn.hetonghao.heart.edu.mapper;
 
-import org.apache.ibatis.annotations.Param;
-import cn.hetonghao.heart.edu.entity.CourseDescription;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import cn.hetonghao.heart.edu.vo.CourseDescriptionPageVO;
 import cn.hetonghao.heart.edu.bo.CourseDescriptionBO;
+import cn.hetonghao.heart.edu.entity.CourseDescription;
+import cn.hetonghao.heart.edu.vo.CourseDescriptionPageVO;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import java.util.List;
@@ -33,7 +32,7 @@ public interface CourseDescriptionMapper extends BaseMapper<CourseDescription> {
      * @param vo
      * @return
      */
-    Integer countByVO(@Param("vo") CourseDescriptionPageVO vo);
+    Integer countByVO( CourseDescriptionPageVO vo);
 
     /**
      * 根据id查询详情

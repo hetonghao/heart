@@ -1,10 +1,9 @@
 package cn.hetonghao.heart.edu.mapper;
 
-import org.apache.ibatis.annotations.Param;
-import cn.hetonghao.heart.edu.entity.Teacher;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import cn.hetonghao.heart.edu.vo.TeacherPageVO;
 import cn.hetonghao.heart.edu.bo.TeacherBO;
+import cn.hetonghao.heart.edu.entity.Teacher;
+import cn.hetonghao.heart.edu.vo.TeacherPageVO;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
      * @param vo
      * @return
      */
-    List<TeacherBO> page(@Param("page") IPage page, @Param("vo") TeacherPageVO vo);
+    List<TeacherBO> page(IPage page, TeacherPageVO vo);
 
     /**
      * 根据VO统计数量
@@ -33,7 +32,7 @@ public interface TeacherMapper extends BaseMapper<Teacher> {
      * @param vo
      * @return
      */
-    Integer countByVO(@Param("vo") TeacherPageVO vo);
+    Integer countByVO(TeacherPageVO vo);
 
     /**
      * 根据id查询详情
